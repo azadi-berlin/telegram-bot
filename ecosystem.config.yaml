@@ -1,0 +1,6 @@
+apps:
+  - name: telegram-bot
+    script: ./src/telegram-bot.js
+    watch: true
+    env:
+      NODE_ENV: production
