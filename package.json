@@ -1,0 +1,23 @@
+{
+  "name": "news-crawler",
+  "version": "1.0.0",
+  "main": "src/telegram-bot",
+  "scripts": {
+    "start": "node src/telegram-bot",
+    "start:dev": "node --watch src/telegram-bot"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "node-telegram-bot-api": "^0.66.0",
+    "pm2": "^5.4.3",
+    "puppeteer": "^23.11.1"
+  },
+  "devDependencies": {
+    "@types/node-telegram-bot-api": "^0.64.7"
+  }
+}
