@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "src/telegram-bot",
   "scripts": {
-    "start": "node src/telegram-bot",
-    "start:dev": "node --watch src/telegram-bot"
+    "start:bot": "node src/telegram-bot",
+    "start:api": "node src/api/api.js",
+    "start:api:dev": "node --watch src/api/api.js",
+    "start:bot:dev": "node --watch src/telegram-bot"
   },
   "type": "module",
   "keywords": [],
@@ -13,6 +15,7 @@
   "description": "",
   "dependencies": {
     "dotenv": "^16.4.7",
+    "fastify": "^5.2.1",
     "link-preview-js": "^3.0.12",
     "mysql2": "^3.12.0",
     "node-telegram-bot-api": "^0.66.0",
