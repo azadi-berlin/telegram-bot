@@ -26,16 +26,13 @@ export class NewsCrawler {
       const preview = await getLinkPreview(news.link);
       return {
         ...news,
+        summary: preview.description,
         image: preview.images[0],
+        date: new Date().toISOString(),
       };
     }));
 
-    const formattedNews = newsListPopulated.map((news) => [
-      `title: ${news.title}`,
-      `link: ${news.link}`,
-      `image: ${news.image}`,
-      `date: ${new Date().toDateString()}`,
-    ].join('\n'));
+    const formattedNews = newsListPopulated.map(NewsCrawler.formatNews);
 
     return formattedNews.slice(0, 5);
   }
@@ -47,10 +44,18 @@ export class NewsCrawler {
 
     console.log('publishing news...');
     console.log(message.reply_to_message.text);
-    const [title, link, image, date] = message.reply_to_message.text.split('\n');
+    const news = NewsCrawler.parseNews(message.reply_to_message.text);
 
 
-    return ['Publishing to the website... [Dry]', title, link, image, date].join('\n');
+    return ['Saving news to the database...', NewsCrawler.formatNews(news)].join('\n');
+  }
+
+  static formatNews(news) {
+    return JSON.stringify(news);
+  }
+
+  static parseNews(text) {
+    return JSON.parse(text);
   }
 }
 
