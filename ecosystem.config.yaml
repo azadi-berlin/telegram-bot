@@ -4,3 +4,8 @@ apps:
     watch: true
     env:
       NODE_ENV: production
+  - name: api
+    script: ./src/api/api.js
+    watch: true
+    env:
+      NODE_ENV: production
