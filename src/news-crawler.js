@@ -1,5 +1,6 @@
 import puppeteer from 'puppeteer';
 import { getLinkPreview } from 'link-preview-js';
+import { NewsDb } from './database/news.db.js';
 
 export class NewsCrawler {
   static async crawlNewsNow() {
@@ -46,6 +47,7 @@ export class NewsCrawler {
     console.log(message.reply_to_message.text);
     const news = NewsCrawler.parseNews(message.reply_to_message.text);
 
+    await NewsDb.saveNews(news).catch(console.error);
 
     return ['Saving news to the database...', NewsCrawler.formatNews(news)].join('\n');
   }
